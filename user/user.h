@@ -1,6 +1,7 @@
 #define SBRK_ERROR ((char *)-1)
 
 struct stat;
+struct ptreeinfo;
 
 // system calls
 int fork(void);
@@ -26,6 +27,7 @@ int pause(int);
 int uptime(void);
 int sync(void);
 int trace(int);
+int ptree(struct ptreeinfo *, int);
 
 // ulib.c
 int stat(const char *, struct stat *);
