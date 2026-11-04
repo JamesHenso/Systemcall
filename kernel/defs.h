@@ -59,6 +59,7 @@ void            ireclaim(int);
 // kalloc.c
 void*           kalloc(void);
 void            kfree(void *);
+uint64          kfreemem(void);
 void            kinit(void);
 
 // log.c
@@ -86,6 +87,7 @@ int             growproc(int);
 void            proc_mapstacks(pagetable_t);
 pagetable_t     proc_pagetable(struct proc *);
 void            proc_freepagetable(pagetable_t, uint64);
+int             proc_count(void);
 int             kkill(int);
 int             killed(struct proc*);
 void            setkilled(struct proc*);

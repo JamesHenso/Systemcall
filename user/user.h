@@ -24,8 +24,10 @@ int getpid(void);
 char *sys_sbrk(int, int);
 int pause(int);
 int uptime(void);
+struct sysinfo;
 int sync(void);
 int trace(int);
+int sysinfo(struct sysinfo *);
 
 // ulib.c
 int stat(const char *, struct stat *);
