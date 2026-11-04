@@ -1,12 +1,11 @@
 #ifndef PTREE_H
 #define PTREE_H
 
-
 struct ptreeinfo {
   int pid;
   int ppid;
   int state;
-  uint64 memsize; 
+  uint64 memsize;
   char name[16];
 };
 
