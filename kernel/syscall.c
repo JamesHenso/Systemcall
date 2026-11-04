@@ -179,7 +179,8 @@ syscall(void)
     p->trapframe->a0 = syscalls[num]();
     if (num < 32 && (p->trace_mask & (1U << num))) {
       if (num < NELEM(syscall_names) && syscall_names[num]) {
-        printk("%d: syscall %s -> %d\n", p->pid, syscall_names[num], (int)p->trapframe->a0);
+        printk("%d: syscall %s -> %d\n", p->pid, syscall_names[num],
+               (int)p->trapframe->a0);
       }
     }
   } else {
