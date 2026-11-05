@@ -137,3 +137,14 @@ sys_sysinfo(void)
     return -1;
   return 0;
 }
+
+uint64
+sys_ptree(void)
+{
+  uint64 buf;
+  int max;
+
+  argaddr(0, &buf);
+  argint(1, &max);
+  return ptree(buf, max);
+}
