@@ -3,7 +3,6 @@
 #include "kernel/ptree.h"
 #include "user/user.h"
 
-// Dat cac mang lon tren BSS de khong lam tran User Stack (4KB)
 static struct ptreeinfo procs[NPROC];
 static int visited[NPROC];
 

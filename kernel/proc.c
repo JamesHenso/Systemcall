@@ -728,10 +728,14 @@ ptree(uint64 addr, int max)
 {
   struct proc *p;
   struct proc *curr = myproc();
-  struct ptreeinfo kbuf[NPROC];
+  struct ptreeinfo *kbuf;
   int count = 0;
 
   if (addr == 0 || max <= 0)
+    return -1;
+
+  kbuf = (struct ptreeinfo *)kalloc();
+  if (kbuf == 0)
     return -1;
 
   acquire(&wait_lock);
@@ -752,12 +756,17 @@ ptree(uint64 addr, int max)
   }
   release(&wait_lock);
 
-  if (count > max)
+  if (count > max) {
+    kfree(kbuf);
     return -1;
+  }
 
   if (copyout(curr->pagetable, curr->sz, addr, (char *)kbuf,
-              (uint64)count * sizeof(struct ptreeinfo)) < 0)
+              (uint64)count * sizeof(struct ptreeinfo)) < 0) {
+    kfree(kbuf);
     return -1;
+  }
 
+  kfree(kbuf);
   return count;
 }
