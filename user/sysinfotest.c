@@ -29,9 +29,8 @@ testmem(void)
     sbrk(-PGSIZE);
     return -1;
   }
-  allocated_one_page =
-    before.freemem >= allocated.freemem &&
-    before.freemem - allocated.freemem == PGSIZE;
+  allocated_one_page = before.freemem >= allocated.freemem &&
+                       before.freemem - allocated.freemem == PGSIZE;
 
   if (sbrk(-PGSIZE) == SBRK_ERROR || sysinfo(&restored) < 0)
     return -1;
